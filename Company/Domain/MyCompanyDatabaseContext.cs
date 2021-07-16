@@ -11,14 +11,7 @@ namespace Company.Domain
 {
     public class MyCompanyDatabaseContext : IdentityDbContext<IdentityUser>
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (optionsBuilder.IsConfigured == false)
-            {
-                optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=MyCompanyDatabase;Integrated Security=True;MultipleActiveResultSets=True;");
-            }
-            base.OnConfiguring(optionsBuilder);
-        }
+        public MyCompanyDatabaseContext(DbContextOptions<MyCompanyDatabaseContext> options) : base(options) { }
 
         public virtual DbSet<TextField> TextFields { set; get; }
         public virtual DbSet<ServiceItem> ServiceItems { set; get; }
